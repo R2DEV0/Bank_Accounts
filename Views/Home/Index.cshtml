@@ -1,0 +1,78 @@
+﻿@model LoginReg
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/style.css"/>
+    <title>Login and/or Register</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <h1 class="col-sm-12 text-center" style="text-decoration: underline;">Welcome to Kevin's Bank of Monies</h1>
+        </div>
+        <br/><br/>
+        <div class="row">
+            <form class="col-sm-6" asp-action="Register" asp-controller="Home" method="post">
+                <div class="row">
+                    <h3 class="col-sm-12 text-center">Register</h3>
+                </div> <br/>
+                <div class="form-group row">
+                    <label for="FirstName" class="col-sm-3">First Name: </label>
+                    <input asp-for="UserForm.FirstName" class="col-sm-6 form-control">
+                    <span class="col-sm-12 text-danger" asp-validation-for="UserForm.FirstName"></span>
+                </div>
+                <div class="form-group row">
+                    <label for="LastName" class="col-sm-3">Last Name: </label>
+                    <input asp-for="UserForm.LastName" class="col-sm-6 form-control">
+                    <span class="col-sm-12 text-danger" asp-validation-for="UserForm.LastName"></span>
+                </div>
+                <div class="form-group row">
+                    <label for="Email" class="col-sm-3">Email: </label>
+                    <input asp-for="UserForm.Email" class="col-sm-6 form-control">
+                    <span class="col-sm-12 text-danger" asp-validation-for="UserForm.Email"></span>
+                </div>
+                <div class="form-group row">
+                    <label for="Password" class="col-sm-3">Password: </label>
+                    <input asp-for="UserForm.Password" class="col-sm-6 form-control">
+                    <span class="col-sm-12 text-danger" asp-validation-for="UserForm.Password"></span>
+                </div>
+                <div class="form-group row">
+                    <label for="Confirm" class="col-sm-3">Confirm: </label>
+                    <input asp-for="UserForm.Confirm" class="col-sm-6 form-control">
+                    <span class="col-sm-12 text-danger" asp-validation-for="UserForm.Confirm"></span>
+                </div>
+                <div class="form-group row">
+                    <input type="submit" value="Register" class="col-sm-4 offset-sm-3 btn btn-success">
+                </div>
+            </form>
+
+            <form class="col-sm-6" asp-action="Login" asp-controller="Home" method="post">
+                <div class="row">
+                    <h3 class="col-sm-12 text-center">Login</h3>
+                </div> <br/>
+                <div class="form-group row">
+                    <label for="Email" class="col-sm-3">Email: </label>
+                    <input asp-for="LoggedUserForm.Email" class="col-sm-6 form-control">
+                    <span class="col-sm-12 text-danger" asp-validation-for="LoggedUserForm.Email"></span>
+                </div>
+                <div class="form-group row">
+                    <label for="Password" class="col-sm-3">Password: </label>
+                    <input asp-for="LoggedUserForm.Password" class="col-sm-6 form-control">
+                    <span class="col-sm-12 text-danger" asp-validation-for="LoggedUserForm.Password"></span>
+                </div>
+                <div class="form-group row">
+                    <input type="submit" value="Login" class="col-sm-4 offset-sm-3 btn btn-primary">
+                </div>
+            </form>
+            <div class="col-12 offset-4">
+                <img src="~/Images/dollar.jpg" alt="A Money">
+            </div>
+    </div>
+
+</body>
+
+</html>

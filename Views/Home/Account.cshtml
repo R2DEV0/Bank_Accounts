@@ -1,0 +1,60 @@
+@model User
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/style.css"/>
+    <title>Your Account</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="col-sm-12 text-center">
+            <h1 style="text-decoration: underline;"> Welcome to your account @Model.FirstName @Model.LastName  </h1>
+            <a href="/logout" class="text-danger"> Logout </a>
+        </div> <br/>
+        <div class="col-4 offset-8">
+            @{
+                decimal sum = 0;
+                @foreach(var trans in Model.OwenerTransactions)
+                {
+                    sum += @trans.Amount;
+                }
+                <h4> Current Balance: <span class="balance"> $@sum.ToString("0.00") </span></h4>
+            }
+        </div>
+        <div class="col-sm-7 offset-2">
+            <form action="/transfer" method="POST">
+                <div class="input-group mb-4">
+                    <input name="Amount" type="number" class="col-4 form-control" placeholder="Deposit / Withdraw">
+                    <div class="input-group-append">
+                        <input type="submit" value="Submit" class="btn btn-primary">
+                    </div>
+                </div>
+            </form>
+            <p class="col-sm-12 text-danger"> @ViewBag.ErrorMessage </p>
+        </div>
+        <div class="col-sm-6 offset-3 tableDiv">
+            <div class="row">
+                <table class="table">
+                    <thead>
+                        <th> Amount: </th>
+                        <th> Date: </th>
+                    </thead>
+                    <tbody class="tbody">
+                    @{
+                        @foreach(var trans in Model.OwenerTransactions)
+                        {
+                            <tr> <td> $@trans.Amount.ToString("0.00") </td> <td> @trans.UpdatedAt.ToShortDateString() </td> </tr>
+                        }
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
